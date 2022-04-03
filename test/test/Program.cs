@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string url = "https://api.openweathermap.org/data/2.5/weather?q=London&unit=metric&appid=b5540070ac4ee230932c18ee8bfc7b27";
+            Console.WriteLine("Enter town");
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={Console.ReadLine()}&units=metric&appid=b5540070ac4ee230932c18ee8bfc7b27";
 
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse();
@@ -23,6 +25,10 @@ namespace test
             {
                 response = streamReader.ReadToEnd();
             }
+            
+            weatherInfo weatherInfo  = JsonConvert.DeserializeObject<weatherInfo>(response);
+            Console.WriteLine($"Town {weatherInfo.name} temperature {weatherInfo.main.temp} wind speed {weatherInfo.wind.speed}");
+            Console.ReadKey();
         }
     }
 }
