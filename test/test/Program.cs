@@ -14,7 +14,7 @@ namespace test
         static void Main(string[] args)
         {
             Console.WriteLine("Enter town");
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={Console.ReadLine()}&units=metric&appid=b5540070ac4ee230932c18ee8bfc7b27";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={Console.ReadLine()}&units=metric&appid=your_api_key";
 
             HttpWebRequest httpReq = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpResp = (HttpWebResponse)httpReq.GetResponse();
@@ -32,4 +32,3 @@ namespace test
         }
     }
 }
-//https://www.youtube.com/watch?v=k91jTTdr0GM
